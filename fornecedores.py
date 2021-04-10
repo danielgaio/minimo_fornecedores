@@ -68,20 +68,15 @@ memoria = [[None for _ in range(qtd_itens_lista + 1)] for _ in range(quantidade_
 
 # print(memoria)
 #inf = 9999999999999
-def solucao_fornecimento(quantidade_restante,indice_fornecedor_atual:int=0):
-    print(quantidade_restante)
-    print(i)
-    if(quantidade_restante==0): # todos os itens foram comprados ou fornecidos
+def solucao_fornecimento(listaItem,idItem,fornecedores,idFornecedor,temp):
+    if(idItem==len(listaItem) or len(fornecedores)==idFornecedor): # todos os itens foram comprados ou fornecidos
         return 0
-    if (quantidade_restante>0 and indice_fornecedor_atual==quantidade_fornecedores):  # foi passado por todos os fornecedores e náo deu pra comprar todos os itens
-        return float("inf")
-        #return inf
-    if(quantidade_restante<0):
-        return float("inf")
-        #return inf
-    if(memoria[indice_fornecedor_atual][quantidade_restante] is None):
-        #print(memoria[indice_fornecedor_atual][quantidade_restante])
-        pega_produto = 1 + solucao_fornecimento(quantidade_restante-quantidade_itens_fornecedor[indice_fornecedor_atual],indice_fornecedor_atual)
+    if(memoria[indice_fornecedor_atual][quantidade_restante] == None):
+        if(listaItem[idItem] in fornecedores[idFornecedor]):
+            if()
+            
+            pega_produto=solucao_fornecimento(listaItem,idItem,fornecedores,idFornecedor+1,temp)    
+            pega_produto = 
         nao_pega_produto = solucao_fornecimento(quantidade_restante,indice_fornecedor_atual+1)
         memoria[indice_fornecedor_atual][quantidade_restante]=min(pega_produto,nao_pega_produto)
         #print(pega_produto)
