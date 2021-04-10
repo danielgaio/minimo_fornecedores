@@ -45,13 +45,18 @@ with open('lista_compras.csv', newline='') as csvfile:
         listaCompras.append(int(row[0]))
         for chave in fornecedores:
             if(int(row[0]) in fornecedores[chave]):
-                    quantidade_itens_fornecedor[chave-1]+= 1
+                quantidade_itens_fornecedor[chave-1]+= 1
+
+
+for chave in quantidade_itens_fornecedor:
+    if chave == 0 :
+        quantidade_itens_fornecedor.remove(chave)                      
 
 print("Lista: ", listaCompras)
 #print(fornecedores)
 print("Qtd itens cada forn.:", quantidade_itens_fornecedor)
 qtd_itens_lista = len(listaCompras)
-print(qtd_itens_lista)
+print("qtd itens ", qtd_itens_lista)
 
 
 # Função Recursiva
@@ -66,6 +71,7 @@ quantidade_fornecedores = len(quantidade_itens_fornecedor)
 
 memoria = [[None for _ in range(qtd_itens_lista + 1)] for _ in range(quantidade_fornecedores)] #insere none 
 
+<<<<<<< HEAD
 # print(memoria)
 #inf = 9999999999999
 def solucao_fornecimento(listaItem,idItem,fornecedores,idFornecedor,temp):
@@ -84,3 +90,34 @@ def solucao_fornecimento(listaItem,idItem,fornecedores,idFornecedor,temp):
     return memoria[indice_fornecedor_atual][quantidade_restante]
 
 print(solucao_fornecimento(int(qtd_itens_lista)))
+=======
+
+def solucao_fornecimento(listaCompras, fornecedores, indiceFornecedor):
+    # print("lista atual : %i, forn atual : %i" %(listaCompras,  fornecedores))
+    if(len(listaCompras) == 0): # todos os itens foram comprados ou fornecidos
+        return 0
+    if (len(listaCompras) > 0 and  indiceFornecedor == quantidade_fornecedores):  # foi passado por todos os fornecedores e náo deu pra comprar todos os itens
+        return float("inf")
+        #return inf
+    if(len(listaCompras) < 0): 
+        return float("inf")
+        #return inf
+    if(memoria[indiceFornecedor][len(listaCompras)] is None):  
+        pega_produto = 1 + solucao_fornecimento(listaCompras-1, fornecedores,indiceFornecedor)
+        nao_pega_produto = solucao_fornecimento(listaCompras, fornecedores,indiceFornecedor+1)
+        memoria[ fornecedores][listaCompras] = min(pega_produto,nao_pega_produto)
+        # print("mem", memoria[ fornecedores][listaCompras])
+        # print("pega ", pega_produto)
+        # print("nao pega", nao_pega_produto)
+        # if (listaCompras[len(listaCompras)-1] not in fornecedores[indiceFornecedor]):
+        #     nao_pega_produto = solucao_fornecimento(listaCompras, fornecedores,indiceFornecedor+1)
+        #     memoria[indiceFornecedor][len(listaCompras)]=nao_pega_produto
+        # else:
+        #     pega_produto = 1 + solucao_fornecimento(listaCompras-1, fornecedores,indiceFornecedor+1)
+        #     memoria[indiceFornecedor][len(listaCompras)]=pega_produto
+        
+    return memoria[indiceFornecedor][len(listaCompras)]
+
+print(solucao_fornecimento(listaCompras, fornecedores, 0))
+print("mem total: ", memoria)
+>>>>>>> c762aa80cae5f1c564628e3bc1c089ecae97fa36
