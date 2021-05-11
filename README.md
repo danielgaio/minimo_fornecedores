@@ -11,7 +11,13 @@ e essa informação fica armazenada em uma tabela A ⊆ F × {1, 2, 3, 4, 5}. Us
 construa um sistema de vendas em que o cliente escolha os produtos que deseja e suas respectivas
 quantidades (que podem ser um número inteiro ou um número real, dependendo da unidade de
 venda), e sistema devolva a melhor compra possível, considerando:
-- A maior avaliação média dos fornecedores.
+- o menor número total de fornecedores para a compra
 
-# Textos sobre problema da moeda
-* http://prorum.com/?qa=3250/problema-troco-resolve-abordagem-natural-sempre-funciona
+# Código que retorna o menor número total de fornecedores
+minimoFornecedores.py
+
+# Entradas esperadas
+- Para a lista de compras o arquivo é denominado: lista_compras.csv
+    - A estrutura do lista_compras é dado por: id do item, quantidade 
+- Para a lista de itens com os fornecedores, seus itens, valores e preços de fretes é o arquivo: entrada.csv
+    - A estrutura da entrada é dada por: fornecedor, id do item, valor, unidade do item se é kg ou unidade, valor do frete
