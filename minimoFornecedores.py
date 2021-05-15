@@ -1,11 +1,11 @@
 import copy, csv
 
 class Fornecedor:
-    def __init__(self, ide, itens,frete):
+    def __init__(self, ide, itens):
         self.ide = ide
         self.itens = itens
         self.cont = 0
-        self.frete = frete
+        self.frete = 0
         self.itemPegos=set()
         self.valor = 0.0
 
@@ -62,14 +62,18 @@ with open('entrada.csv', newline='') as csvfile:
     for row in spamreader:
         if(int(row[0]) in fornecedores):  # esse aqui caminha fornecedores coluna 
             fornecedores[int(row[0])].itens[row[1]]=Item(row[1],row[2],row[3]) # add item coluna
-            fornecedores[int(row[0])].frete=row[4]
         else:
-            fornecedores[int(row[0])] = Fornecedor(row[0], {row[1]:Item(row[1],row[2],row[3],)},row[4])
+            fornecedores[int(row[0])] = Fornecedor(row[0], {row[1]:Item(row[1],row[2],row[3],)})
            # fornecedores[int(row[0])].append(int(row[1])) # adiciona item  no fornecedor
 
-
+#==========================================================
+# Leitura do arquivo da lista de fretes
+with open('frete.csv', newline='') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter=',')
+    for row in spamreader:
+        if(int(row[0]) in fornecedores):  # esse aqui caminha fornecedores coluna 
+            fornecedores[int(row[0])].frete=float(row[1])
 matriz=[]
-
 
 # # #https://github.com/Nathalino/multiplicacaoMatriz/blob/master/matriz.php
 # # inicia a matriz de 3 dimensões. Cada célula da matriz armazena um conjunto de fornecedores
@@ -121,10 +125,6 @@ while cont < len(fornecedores): # percorre todas matrizes de fornecedores
                 inicio += 1
                 verificado = False
     cont += 1
-
-
-
-
 
 # # =====================
 # #  Preenchimento das diagonais superiores das matrizes - resposta no canto superior direito - ignorar 
