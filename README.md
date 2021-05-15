@@ -19,5 +19,7 @@ minimoFornecedores.py
 # Entradas esperadas
 - Para a lista de compras o arquivo é denominado: lista_compras.csv
     - A estrutura do lista_compras é dado por: id do item, quantidade 
-- Para a lista de itens com os fornecedores, seus itens, valores e preços de fretes é o arquivo: entrada.csv
-    - A estrutura da entrada é dada por: fornecedor, id do item, valor, unidade do item se é kg ou unidade, valor do frete
+- Para a lista de itens com os fornecedores, seus itens, valores é o arquivo: entrada.csv
+    - A estrutura da entrada é dada por: fornecedor, id do item, valor, unidade do item se é kg ou unidade
+- Para os valores de frete de cada fornecedor é utilizado o arquivo: frete.csv 
+    - Que contém em cada linha: fornecedor, valor do frete
